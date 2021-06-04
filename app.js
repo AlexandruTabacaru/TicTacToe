@@ -28,16 +28,18 @@ const displayControler=(()=>{
     //assigning player sign in gameboard array then updating the display
     const boxes=Array.from(document.getElementsByClassName('box'));
     boxes.forEach(function(box){
-        box.addEventListener('click', function(){
+        box.addEventListener('click', function addToBoard(){
         gameBoard.gameboard[Array.from(this.parentElement.children).indexOf(this)]="X";
         updateDisplay(Array.from(this.parentElement.children).indexOf(this));
+        box.removeEventListener('click', addToBoard); // this particular line might be a good and quick way as to not allow players to override squares - will help with turns
     })}
     )
 })();
 
 //we will make a variable called turn which allows each player to play based on the turn of the other one - GENIUS
 const Player=(sign)=>{
-
-    return { }
+      return { sign }
 };
     
+const PlayerOne= Player('X');
+const PlayerTwo= Player('0')
